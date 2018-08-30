@@ -1,2 +1,2 @@
 # helloworld-micronaut
-Micronaut based Hello World application
+[Micronaut](http://micronaut.io/) based Hello World application
