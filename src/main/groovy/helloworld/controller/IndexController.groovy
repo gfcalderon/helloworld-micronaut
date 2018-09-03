@@ -8,19 +8,13 @@ import io.micronaut.http.MediaType
 import io.reactivex.Single
 
 @CompileStatic
-@Controller("/hello")
-class HelloController {
+@Controller("/")
+class IndexController {
 
     @Get("/")
-    @Produces(MediaType.TEXT_PLAIN)
-    Single hello() {
-        return hello( "World" )
-    }
-
-    @Get( "/{name}" )
     @Produces( MediaType.TEXT_PLAIN )
-    Single hello( name ) {
-        return Single.just( "Hello ${name}!" )
+    Single index() {
+        return Single.just( "Micronaut based Hello World Application" )
     }    
-  
+
 }
