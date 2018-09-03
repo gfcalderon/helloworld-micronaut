@@ -6,10 +6,10 @@ import io.micronaut.http.annotation.Get
 import io.reactivex.Single
  
 @CompileStatic
-@Client("/")
+@Client( "/" )
 interface IndexClient {
 
-    @Get("/")
+    @Get( "/" )
     Single index()
     
 }

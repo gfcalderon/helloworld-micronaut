@@ -8,10 +8,10 @@ import io.micronaut.http.MediaType
 import io.reactivex.Single
 
 @CompileStatic
-@Controller("/")
+@Controller( "/" )
 class IndexController {
 
-    @Get("/")
+    @Get( "/" )
     @Produces( MediaType.TEXT_PLAIN )
     Single index() {
         return Single.just( "Micronaut based Hello World Application" )

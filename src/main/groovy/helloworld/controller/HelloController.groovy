@@ -8,11 +8,11 @@ import io.micronaut.http.MediaType
 import io.reactivex.Single
 
 @CompileStatic
-@Controller("/hello")
+@Controller( "/hello" )
 class HelloController {
 
-    @Get("/")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Get( "/" )
+    @Produces( MediaType.TEXT_PLAIN )
     Single hello() {
         return hello( "World" )
     }
