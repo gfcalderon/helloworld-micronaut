@@ -2,4 +2,11 @@ micronaut:
     application:
         name: helloworld-micronaut
     server:
-        port: 8080
+        port: -1
+
+---
+consul:
+    client:
+        registration:
+            enabled: true
+        defaultZone: "${CONSUL_HOST:127.0.0.1}:${CONSUL_PORT:8500}"
