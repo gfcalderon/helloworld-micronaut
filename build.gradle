@@ -1,59 +1,43 @@
 plugins {
-    id "groovy"
-    id "com.github.johnrengelman.shadow" version "5.2.0"
-    id "application"
+    id("groovy")
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("io.micronaut.application") version "1.2.0"
 }
 
-version "0.1"
-group "helloworld"
+version = "0.1"
+group = "helloworld"
 
 repositories {
     mavenCentral()
-    maven { url "https://jcenter.bintray.com" }
+    jcenter()
 }
 
-configurations {
-    // for dependencies that are needed for development only
-    developmentOnly
+micronaut {
+    runtime("netty")
+    testRuntime("spock2")
+    processing {
+        incremental(true)
+        annotations("helloworld.*")
+    }
 }
 
 dependencies {
-    compileOnly(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
-    compileOnly("io.micronaut:micronaut-inject-groovy")
-    implementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
-    implementation("io.micronaut:micronaut-inject")
     implementation("io.micronaut:micronaut-validation")
-    implementation("io.micronaut:micronaut-runtime-groovy")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
     implementation("javax.annotation:javax.annotation-api")
-    implementation("io.micronaut:micronaut-http-server-netty")
     implementation("io.micronaut:micronaut-http-client")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
-    testImplementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
-    testImplementation("io.micronaut:micronaut-inject-groovy")
-    testImplementation("org.spockframework:spock-core") {
-        exclude group: "org.codehaus.groovy", module: "groovy-all"
-    }
-    testImplementation("io.micronaut.test:micronaut-test-spock")
+    runtimeOnly("ch.qos.logback:logback-classic")
 }
 
-test.classpath += configurations.developmentOnly
-
-mainClassName = "helloworld.Application"
+application {
+    mainClass.set("helloworld.Application")
+}
 
 java {
-    sourceCompatibility = JavaVersion.toVersion('11')
-    targetCompatibility = JavaVersion.toVersion('11')
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
 }
 
-tasks.withType(GroovyCompile) {
-    groovyOptions.forkOptions.jvmArgs.add('-Dgroovy.parameters=true')
-}
+tasks {
 
-shadowJar {
-    mergeServiceFiles()
-}
-
-tasks.withType(JavaExec) {
-    classpath += configurations.developmentOnly
-    jvmArgs('-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
 }
