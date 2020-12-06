@@ -26,6 +26,7 @@ dependencies {
     implementation("io.micronaut.groovy:micronaut-runtime-groovy")
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-discovery-client")
     runtimeOnly("ch.qos.logback:logback-classic")
 }
 
