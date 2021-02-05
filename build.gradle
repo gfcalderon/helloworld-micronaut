@@ -9,7 +9,6 @@ group = "helloworld"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 micronaut {
