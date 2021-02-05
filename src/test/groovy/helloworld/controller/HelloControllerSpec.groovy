@@ -1,6 +1,6 @@
 package helloworld.controller
 
-import io.micronaut.test.annotation.MicronautTest
+import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import spock.lang.Specification
 import helloworld.client.HelloClient
 
@@ -33,5 +33,5 @@ class HelloControllerSpec extends Specification {
         then:
             response == "Hello John Doe!"
     }
-    
+
 }
