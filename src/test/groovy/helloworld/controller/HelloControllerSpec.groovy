@@ -1,10 +1,11 @@
 package helloworld.controller
 
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
+import jakarta.inject.Inject
+import reactor.core.publisher.Mono
 import spock.lang.Specification
 import helloworld.client.HelloClient
 
-import javax.inject.Inject
 
 @MicronautTest
 class HelloControllerSpec extends Specification {
@@ -17,7 +18,7 @@ class HelloControllerSpec extends Specification {
             helloClient
 
         when:
-            def response = helloClient.hello().blockingGet()
+            def response = Mono.from( helloClient.hello() ).block()
 
         then:
             response == "Hello World!"
@@ -28,7 +29,7 @@ class HelloControllerSpec extends Specification {
             helloClient
 
         when:
-            def response = helloClient.hello( "John Doe" ).blockingGet()
+            def response = Mono.from( helloClient.hello( "John Doe" ) ).block()
 
         then:
             response == "Hello John Doe!"

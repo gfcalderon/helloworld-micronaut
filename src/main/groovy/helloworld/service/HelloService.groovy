@@ -1,18 +1,18 @@
 package helloworld.service
 
-import io.reactivex.Single
-
-import javax.inject.Singleton
+import jakarta.inject.Singleton
+import org.reactivestreams.Publisher
+import reactor.core.publisher.Mono
 
 @Singleton
 class HelloService {
 
-    Single hello() {
+    static Publisher hello() {
         return hello( "World" )
     }
 
-    Single hello( name ) {
-        return Single.just( "Hello ${name}!" )
+    static Publisher hello(name ) {
+        return Mono.just("Hello ${name}!" )
     }
 
 }
